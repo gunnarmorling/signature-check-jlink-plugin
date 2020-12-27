@@ -1,0 +1,61 @@
+<!--
+
+     License: Apache License, Version 2.0
+     See the LICENSE file in the root directory or <https://www.apache.org/licenses/LICENSE-2.0>.
+
+-->
+<!--
+ License: Apache License, Version 2.0
+ See the LICENSE file in the root directory or <http://www.apache.org/licenses/LICENSE-2.0>.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>dev.morling.jlink.plugins</groupId>
+    <artifactId>signature-check-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.release></maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <artifactId>signature-check-jlink-plugin</artifactId>
+  <packaging>jar</packaging>
+  <name>Signature Check jlink Plug-in</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>animal-sniffer</artifactId>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default-testCompile</id>
+            <configuration>
+              <release>11</release>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <fork>true</fork>
+          <compilerArgs>
+            <arg>--add-exports="jdk.jlink/jdk.tools.jlink.plugin=dev.morling.jlink.plugins.sigcheck"</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
