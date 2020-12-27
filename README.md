@@ -4,7 +4,7 @@ A proof-of-concept for a plug-in for the jlink tool which detects differences be
 This helps to prevent ``NoSuchMethodError``s at application runtime,
 caused by using different versions of a module at compile time vs. runtime.
 
-Note: The jlink plug-in API is currently not officially supported nor exposed the the _jdk.jlink_ module.
+Note: The jlink plug-in API is currently not officially supported nor exposed by the _jdk.jlink_ module.
 Hence [some trickery](https://in.relation.to/2017/12/12/exploring-jlink-plugin-api-in-java-9/#trick-2-the-java-agent) is required for compiling and using this plug-in.
 
 ## Usage
