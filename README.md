@@ -25,11 +25,21 @@ $JAVA_HOME/bin/jlink \
 The `order` module is compiled against the `customer-1` module.
 The runtime image is created using the `customer-2` module though, which contains a breaking API change.
 When not using this plug-in, this would result in a `NoSuchMethodError` at runtime.
-With this plug-in, the mismatching API signature will be detected at link time and raised as an error.
+With this plug-in, the mismatching API signature will be detected at link time and raised as an error:
+
+```shell
+[ERROR] /com.example.order/com/example/order/OrderService.class:13: Undefined reference: void com.example.customer.CustomerService.doIt(String)
+Error: Signature violations, check the logs
+```
+
+## Implementation
+
+This is a very basic PoC, using Animal Sniffer internally for creating and comparing API signatures.
+Only a subset of API changes will be spotted, e.g. an added abstract method to a superclass or interface would not be detected and still result in an error at runtime.
 
 ## Build
 
-This project requires OpenJDK 14 or later for its build.
+This project requires OpenJDK 11 or later for its build.
 Apache Maven is used for the build.
 Run the following to build the project:
 
