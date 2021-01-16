@@ -4,8 +4,7 @@
  */
 package com.example.customer;
 
-public class CustomerService {
+public interface CustomerService {
 
-    public void doIt(long customer) {
-    }
+    void incrementLoyaltyPoints(CustomerId customerId, long orderValue);
 }

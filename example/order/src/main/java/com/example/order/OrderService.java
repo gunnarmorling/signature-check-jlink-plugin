@@ -4,12 +4,14 @@
  */
 package com.example.order;
 
+import java.util.ServiceLoader;
+
 import com.example.customer.CustomerService;
 
 public class OrderService {
 
     public static void main(String[] args) {
-        CustomerService cs = new CustomerService();
-        cs.doIt("Bob");
+        CustomerService customerService = ServiceLoader.load(CustomerService.class).findFirst().get();
+        customerService.incrementLoyaltyPoints(123, 4999);
     }
 }
